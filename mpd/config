@@ -1,6 +1,6 @@
 # MPD Settings .. 
 mpd_crossfade_time = "3"
-mpd_music_dir = "~/Music/iTunes/iTunes media/Music"
+mpd_music_dir = ""
 
 # Display ..
 song_list_format = " {$3%a $1• $8}{%t} "
