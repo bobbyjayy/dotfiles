@@ -4,7 +4,7 @@ refreshFrequency: 1000 # ms
 
 render: (output) ->
   """
-  <link rel="stylesheet" href="~/Library/Application\ Support/Übersicht/widgets/nerdbar.widget/assets/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.min.css" />
   <div class="foc"
     <span></span>
     <span class="icon"></span>
