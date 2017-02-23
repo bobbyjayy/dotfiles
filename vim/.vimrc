@@ -39,6 +39,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"javascript 
+let g:syntastic_html_checkers = ['jshint']
+
 " eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimFileTypeValidate = 0
@@ -77,6 +80,9 @@ inoremap <esc> <nop>
 " mapping to execute python code
 nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
 
+"mapping to open browser
+nnoremap <silent> <F10> :!open %<cr>
+
 "command to indent html accordingly
 "autocmd BufWritePre,BufRead *.html :normal gg=G
 
@@ -98,3 +104,7 @@ let g:netrw_banner=0  "disable annoying banner
 " Read an empty HTML template and move cursor to title
 nnoremap \html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 nnoremap \java :-1read $HOME/.vim/.skeleton.java<CR>2ea
+
+" Open nerd tree in current buffer
+nmap <silent><leader>k :NERDTreeToggle<cr>
+
