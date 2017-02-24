@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/BuddhaBobby/to-do-list'
+let g:netrw_dirhist_2='/Users/BuddhaBobby/Documents/Java/Class/FinalProject/AllProjects/Animation'
+let g:netrw_dirhist_3='/Users/BuddhaBobby/.vim/colors'
+let g:netrw_dirhist_4='/Users/BuddhaBobby/.kwm/layouts'
+let g:netrw_dirhist_5='/Users/BuddhaBobby/.config/mpv/watch_later'
+let g:netrw_dirhist_6='/Users/BuddhaBobby/Documents/workspace/learnC/lisp/example1.dSYM'
+let g:netrw_dirhist_7='/Users/BuddhaBobby/.vim/bundle/Vundle.vim'
