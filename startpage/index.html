@@ -1,64 +1,55 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!DOCTYPE HTML>
+	<head>
+		<title>Homepage</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
 
-  <head>
-    <!-- document metadata -->
-    <meta charset="UTF-8">
+		<div id="container">
+			<div id="header">
+				<h3 style="display: inline;"><span class="blue"> ~ </span> <span class="pink">❯</span> <span class="green">locate</span></h3>
+				<form method="get" action="https://duckduckgo.com">
+				<!-- <form method="get" action="https://www.google.com/search"> -->
+					<input type="text" name="q" \>
+				</form>
 
-    <!-- site metadata -->
-    <title>Launch</title>
+			</div>
+			<div id="links">
 
-    <!-- style -->
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
-  </head>
+				<div class="linksbox">
+					<h3><span class="blue"> ~ </span> <span class="pink">❯</span> [<span class="green">General</span>]<span class="pink">:</span> ls</h3>
+			        <a class="cyan" href="https://stackoverflow.com/" target="_blank">Stack Overflow</a>
+							<a class="red" href="https://mail.google.com/" target="_blank">gmail</a>
+							<a class="cyan" href="https://www.youtube.com" target="_blank">youtube</a>
+				</div>
 
-  <body>
-    <div id="container">
+				<div class="linksbox">
+					<h3><span class="blue"> ~ </span> <span class="pink">❯</span> [<span class="green">Reddit</span>]<span class="pink">:</span> ls</h3>
+							<a class="red" href="https://www.reddit.com/" target="_blank">front page</a>
+			        <a class="cyan" href="https://www.reddit.com/r/badcode" target="_blank">/r/badcode</a>
+			        <a class="cyan" href="https://www.reddit.com/r/ProgrammerHumor/" target="_blank">/r/ProgrammerHumor</a>
+			        <a class="cyan" href="https://www.reddit.com/r/unixporn/" target="_blank">/r/unixporn</a>
+							<a class="cyan" href="https://www.reddit.com/r/gaming/" target="_blank">/r/gaming</a>
+							<a class="cyan" href="https://www.reddit.com/r/battlestations/" target="_blank">/r/battlestations</a>
+							<a class="cyan" href="https://www.reddit.com/r/pcmasterrace/" target="_blank">/r/pcmasterrace</a>
+							<a class="cyan" href="https://www.reddit.com/r/startpages/" target="_blank">/r/startpages</a>
+				</div>
 
-      <div id="searchbox">
-        <!-- klaz@internet ~ $ search -->
-        <h3><span class="blue">BuddhaBobby</span>@<span class="violet">internet</span> <span class="magenta">~</span> <span class="blue">$</span> <span class="green">search</span></h3>
-        <!-- search -->
-        <input type="text" id="search" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="autofocus" spellcheck="false" placeholder="" onkeypress="searchKeyPress(event)"></input>
-      </div> <!-- end searchbox -->
+				<div class="linksbox">
+					<h3><span class="blue"> ~ </span> <span class="pink">❯</span> [<span class="green">Nerd</span>]<span class="pink">:</span> ls</h3>
+					<a class="cyan" href="https://github.com/" target="_blank">github</a>
+          <a class="cyan" href="https://store.steampowered.com/" target="_blank">steam</a>
+          <a class="cyan" href="https://news.ycombinator.com/" target="_blank">hacker news</a>
+          <a class="cyan" href="http://distrowatch.com/">distrowatch</a>
+          <a class="red" href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md" target="_blank">Programming books</a>
+				</div>
 
-      <div id="links">
-        <div class="box">
-          <!-- ~ $ cd ~/general -->
-          <h3><span class="magenta">~</span> <span class="blue">$</span> <span class="orange">cd</span> ~/<span class="green">general</span></h3>
-          <a href="https://mail.google.com/">gmail</a>
-          <a href="https://www.youtube.com">youtube</a>
-        </div>
+				<div class="linksbox">
+					<h3><span class="blue"> ~ </span> <span class="pink">❯</span> [<span class="green">School</span>]<span class="pink">:</span> ls</h3>
+				</div>
 
-        <div class="box">
-          <!-- ~ $ cd ~/reddit -->
-          <h3><span class="magenta">~</span> <span class="blue">$</span> <span class="orange">cd</span> ~/<span class="green">reddit</span></h3>
-          <a href="https://www.reddit.com/">front page</a>
-          <a href="https://www.reddit.com/r/gaming/">/r/games</a>
-          <a href="https://www.reddit.com/r/battlestations/">/r/battlestations</a>
-          <a href="https://www.reddit.com/r/pcmasterrace/">/r/pcmasterrace</a>
-          <a href="https://www.reddit.com/r/programmerhumor/">/r/funny</a>
-          <a href="https://www.reddit.com/r/unixporn/">/r/unixporn</a>
-          <a href="https://www.reddit.com/r/startpages/">/r/startpages</a>
-        </div>
-
-        <div class="box">
-          <!-- ~ $ cd ~/nerd -->
-          <h3><span class="magenta">~</span> <span class="blue">$</span> <span class="orange">cd</span> ~/<span class="green">nerd</span></h3>
-          <a href="https://github.com/">github</a>
-          <a href="http://store.steampowered.com/">steam</a>
-          <a href="https://news.ycombinator.com/">hacker news</a>
-          <a href="http://distrowatch.com/">distrowatch</a>
-          <a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md">Programming books</a>
-        </div>
-      </div> <!-- end links -->
-
-    </div> <!-- end container -->
-
-    <!-- commands script -->
-    <script type="text/javascript" src="assets/search.js"></script>
-
-  </body>
-
+			</div>
+		</div>
+	</body>
 </html>
