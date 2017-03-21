@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""'
 """"""""PLUGINS"""""""""""""
 """"""""""""""""""""""""""""
-
+" {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -34,10 +34,13 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"}}}
 
 """"""""""""""""""""""""""
 """"""" GLOBAL""""""""""""
 """"""""""""""""""""""""""
+" {{{
+let &keywordprg=':help'
 
 syntax on
 filetype plugin indent on
@@ -76,6 +79,13 @@ set softtabstop=2 tabstop=2 shiftwidth=2
 set ruler
 set wildignore=*.swp,*.bak
 set wildmode=longest,list
+set cursorline " highlight current line
+set showmatch  " highlight matching [{()}]
+set foldenable " enable folding
+set foldlevelstart=10 " open most folds by default
+set foldnestmax=10 "10 nested fold max
+set foldmethod=indent "fold based on indent level
+set modelines=1
 
 hi vertsplit ctermfg=238 ctermbg=235
 hi LineNr ctermfg=237
@@ -97,11 +107,12 @@ set laststatus=2
 set noshowmode
 colorscheme apprentice
 
+" }}}
 
 """""""""""""""""""""""""""""
 """""KEY BINDINGS""""""""""""
 """""""""""""""""""""""""""""
-
+" {{{
 nmap <TAB> :bn<CR>
 nmap <S-TAB> :bp<CR>
 
@@ -120,10 +131,18 @@ nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
 "mapping to open browser
 nnoremap <silent> <F10> :!open %<cr>
 
+" Regex mapping for substituting
+noremap <leader>; :%s:::g<Left><Left><Left>
+noremap <leader>' :%s:::cg<Left><Left><Left><Left>
+
+" Turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+" }}}
+
 """""""""""""""""""""""""""""
 """"SYNTASTIC SETTING""""""""
 """""""""""""""""""""""""""""
-
+" {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -134,7 +153,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "javascript 
-let g:syntastic_html_checkers = ['jshint']
+"let g:syntastic_html_checkers = ['jshint']
 
 " eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
@@ -143,25 +162,31 @@ let g:EclimFileTypeValidate = 0
 "short abbreviation to make life easier
 "autocmd FileType python :iabbrev <buffer>iff if:<left>
 "autocmd FileType python :iabbrev <buffer>re return
+" }}}
 
+"{{{ Fuzzy search
 "Search down into all folders
 "fuzzy search
 set path+=**
 "Displays all matching files when tab complete
 set wildmenu
+"}}}
 
 "Tweaks for browsing
 let g:netrw_banner=0  "disable annoying banner
 
-" SNIPPETS:
+"{{{  SNIPPETS
 
 " Read an empty HTML template and move cursor to title
-nnoremap \html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
+nnoremap \html :-1read $HOME/.vim/.skeleton.html<CR>4jwf>a
 nnoremap \java :-1read $HOME/.vim/.skeleton.java<CR>2ea
+"}}}
 
+"{{{ NERDTree
 " Open nerd tree in current buffer
 nmap <silent><leader>k :NERDTreeToggle<cr>
 let NERDTreeSortOrder = ['\/$', '\.js*', '\.cpp$', '\.h$', '*']
+"}}}
 
 hi LineNr ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
@@ -169,7 +194,7 @@ hi Normal guibg=NONE ctermbg=NONE
 """"""""""""""""""""""""
 """ CUSTOM FUNCTIONS""""
 """"""""""""""""""""""""
-
+" {{{
 nnoremap <F2> :call NumberToggle()<cr>
 
 """ FocusMode
@@ -198,4 +223,6 @@ function! ToggleFocusMode()
   endif
 endfunc
 nnoremap <F1> :call ToggleFocusMode()<cr>
+"}}}
 
+" vim:foldmethod=marker:foldlevel=0
