@@ -1,0 +1,11 @@
+if [[ "$(/usr/local/bin/mpc current)" == "" ]]
+then
+	echo "No Song"
+else
+	if [[ "$(/usr/local/bin/mpc)" == *"[playing]"* ]]
+	then
+		echo "$(/usr/local/bin/mpc current) [playing]"
+	else
+		echo "$(/usr/local/bin/mpc current) [paused]"
+	fi
+fi
