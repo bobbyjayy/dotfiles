@@ -13,12 +13,13 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'scrooloose/nerdtree'
-
 Plugin 'vim-syntastic/syntastic'
-
 Plugin 'airblade/vim-gitgutter'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'mattn/emmet-vim'
+Plugin 'dylanaraps/wal'
+Plugin 'mhinz/vim-startify'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -79,7 +80,7 @@ set softtabstop=2 tabstop=2 shiftwidth=2
 set ruler
 set wildignore=*.swp,*.bak
 set wildmode=longest,list
-set cursorline " highlight current line
+" set cursorline " highlight current line
 set showmatch  " highlight matching [{()}]
 set foldenable " enable folding
 set foldlevelstart=10 " open most folds by default
@@ -105,7 +106,7 @@ set statusline=%=%f\ %m\ %P\
 set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 set laststatus=2
 set noshowmode
-colorscheme apprentice
+colorscheme wal
 
 " }}}
 
@@ -153,7 +154,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "javascript 
-"let g:syntastic_html_checkers = ['jshint']
+let g:syntastic_html_checkers = ['jshint']
 
 " eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
