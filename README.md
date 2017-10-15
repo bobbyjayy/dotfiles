@@ -4,7 +4,7 @@
 * Window Manager: `kwm`
 * Terminal: `iTerm2`
 * Terminal Font: `Monaco`
-* Terminal color scheme: `[Wal][1]`
+* Terminal color scheme: [Wal][1]
 * Text Editor: `vim`
 * Music Player: `ncmpcpp`
 * File Browser: `ranger`
