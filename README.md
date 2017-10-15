@@ -11,7 +11,7 @@
 * Web Browser: `firefox`
 * Bar: `nerdbar`
 
-[1]: https://github.com/dylanaraps/wal "wal"
+[1]: https://github.com/dylanaraps/wal "Wal"
 
 # Screenshots
 
