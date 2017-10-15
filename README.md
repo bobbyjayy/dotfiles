@@ -4,12 +4,14 @@
 * Window Manager: `kwm`
 * Terminal: `iTerm2`
 * Terminal Font: `Monaco`
-* Terminal color scheme: `Apprentice`
+* Terminal color scheme: `[Wal][1] script`
 * Text Editor: `vim`
 * Music Player: `ncmpcpp`
 * File Browser: `ranger`
 * Web Browser: `firefox`
 * Bar: `nerdbar`
+
+[1]: https://github.com/dylanaraps/wal "wal"
 
 # Screenshots
 
