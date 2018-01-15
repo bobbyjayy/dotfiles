@@ -14,12 +14,17 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'mattn/emmet-vim'
 Plugin 'dylanaraps/wal'
 Plugin 'mhinz/vim-startify'
+Plugin 'ap/vim-css-color'
+Plugin 'tpope/vim-surround'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -45,6 +50,7 @@ let &keywordprg=':help'
 
 syntax on
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 set textwidth=80
 set encoding=utf-8
 set relativenumber
@@ -85,8 +91,9 @@ set showmatch  " highlight matching [{()}]
 set foldenable " enable folding
 set foldlevelstart=10 " open most folds by default
 set foldnestmax=10 "10 nested fold max
-set foldmethod=indent "fold based on indent level
+set foldmethod=manual "fold based on indent level
 set modelines=1
+set pastetoggle=<F3>
 
 hi vertsplit ctermfg=238 ctermbg=235
 hi LineNr ctermfg=237
@@ -114,6 +121,8 @@ colorscheme wal
 """""KEY BINDINGS""""""""""""
 """""""""""""""""""""""""""""
 " {{{
+nnoremap <leader>s :update<CR>
+
 nmap <TAB> :bn<CR>
 nmap <S-TAB> :bp<CR>
 
@@ -148,13 +157,17 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+noremap <leader>e :SyntasticToggleMode<CR>
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "javascript 
-let g:syntastic_html_checkers = ['jshint']
+"let g:syntastic_html_checkers = ['jshint']
+let g:syntastic_c_checkers = ['gcc']
+let g:syntastic_cpp_checkers = ['gcc']
 
 " eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
