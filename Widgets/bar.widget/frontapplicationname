@@ -1,9 +1,0 @@
-APP_NAME="$(lsappinfo info -only name `lsappinfo front`)"
-APP_NAME="$(echo $APP_NAME | sed -e 's/\"LSDisplayName\"=\"\(.*\)\"/\1/')"
-
-if [[ $APP_NAME == "osu!-"* ]]
-then
-	echo "osu!"
-else
-	echo $APP_NAME
-fi

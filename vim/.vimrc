@@ -194,6 +194,7 @@ let g:netrw_banner=0  "disable annoying banner
 " Read an empty HTML template and move cursor to title
 nnoremap \html :-1read $HOME/.vim/.skeleton.html<CR>4jwf>a
 nnoremap \java :-1read $HOME/.vim/.skeleton.java<CR>2ea
+nnoremap \boot :-1read $HOME/.vim/.skeleton.bootstrap<CR>10j2e2li
 "}}}
 
 "{{{ NERDTree
