@@ -1,34 +1,75 @@
 """""""""""""""""""""""""""'
-""""""""PLUGINS"""""""""""""
+""""""""VIM-PLUG PLUGINS"""""""""""""
 """"""""""""""""""""""""""""
 " {{{
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Specify a directory for plugins
+call plug#begin('~/.vim/bundle')
+
+Plug 'VundleVim/Vundle.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
+Plug 'dylanaraps/wal'
+Plug 'mhinz/vim-startify'
+Plug 'ap/vim-css-color'
+Plug 'tpope/vim-surround'
+Plug 'ternjs/tern_for_vim'
+Plug 'othree/yajs.vim'
+Plug 'w0rp/ale'
+Plug 'mxw/vim-jsx'
+Plug 'prettier/vim-prettier', {
+      \'do': 'yarn install',
+      \'for':['javascript', 'typescript','css','less','scss','json','markdown','vue','yaml','html']}
+
+" Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'junegunn/seoul256.vim'
+
+call plug#end()
+
+
+" }}}
+
+"""""""""""""""""""""""""""'
+""""""""VUNDLE PLUGINS"""""""""""""
+""""""""""""""""""""""""""""
+" {{{
+"set nocompatible              " be iMproved, required
+"filetype off                  " required
+
+"" set the runtime path to include Vundle and initialize
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"" alternatively, pass a path where Vundle should install plugins
+""call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'mattn/emmet-vim'
-Plugin 'dylanaraps/wal'
-Plugin 'mhinz/vim-startify'
-Plugin 'ap/vim-css-color'
-Plugin 'tpope/vim-surround'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdcommenter'
+""Plugin 'vim-syntastic/syntastic'
+"Plugin 'airblade/vim-gitgutter'
+"Plugin 'sheerun/vim-polyglot'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'dylanaraps/wal'
+"Plugin 'mhinz/vim-startify'
+"Plugin 'ap/vim-css-color'
+"Plugin 'tpope/vim-surround'
+"Plugin 'ternjs/tern_for_vim'
+""Plugin 'Valloric/YouCompleteMe'
+"Plugin 'othree/yajs.vim'
+"Plugin 'w0rp/ale'
+"Plugin 'mxw/vim-jsx'
+"Plugin 'prettier/vim-prettier'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+"call vundle#end()            " required
+"filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -52,7 +93,10 @@ syntax on
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 set textwidth=80
+"set textwidth=60
 set encoding=utf-8
+set fenc=utf-8
+set fencs=iso-2022-jp,euc-jp,cp932
 set relativenumber
 set hidden
 set showcmd
@@ -113,7 +157,7 @@ set statusline=%=%f\ %m\ %P\
 set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 set laststatus=2
 set noshowmode
-colorscheme wal
+colorscheme seoul256 
 
 " }}}
 
@@ -136,10 +180,11 @@ inoremap jk <esc>
 inoremap <esc> <nop>
 
 " mapping to execute python code
-nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
+"nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
 
 "mapping to open browser
 nnoremap <silent> <F10> :!open %<cr>
+nnoremap <silent> <F9> :!open % -a qutebrowser<cr>
 
 " Regex mapping for substituting
 noremap <leader>; :%s:::g<Left><Left><Left>
@@ -147,35 +192,25 @@ noremap <leader>' :%s:::cg<Left><Left><Left><Left>
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
+
+"=== coc.nvim ==="
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
+
+" map Ctrl X Ctrl o
+" imap <tab><tab> <c-x><c-o>
+
 " }}}
 
 """""""""""""""""""""""""""""
-""""SYNTASTIC SETTING""""""""
+""""ALE SETTING""""""""
 """""""""""""""""""""""""""""
 " {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:ale_linters = {
+\   'javascript': ['eslint']
+\}
 
-noremap <leader>e :SyntasticToggleMode<CR>
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-"javascript 
-"let g:syntastic_html_checkers = ['jshint']
-let g:syntastic_c_checkers = ['gcc']
-let g:syntastic_cpp_checkers = ['gcc']
-
-" eclim settings
-let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimFileTypeValidate = 0
-
-"short abbreviation to make life easier
-"autocmd FileType python :iabbrev <buffer>iff if:<left>
-"autocmd FileType python :iabbrev <buffer>re return
 " }}}
 
 "{{{ Fuzzy search
@@ -195,6 +230,7 @@ let g:netrw_banner=0  "disable annoying banner
 nnoremap \html :-1read $HOME/.vim/.skeleton.html<CR>4jwf>a
 nnoremap \java :-1read $HOME/.vim/.skeleton.java<CR>2ea
 nnoremap \boot :-1read $HOME/.vim/.skeleton.bootstrap<CR>10j2e2li
+nnoremap \lorem :-1read $HOME/.vim/.skeleton.lorem<CR>
 "}}}
 
 "{{{ NERDTree
@@ -240,4 +276,7 @@ endfunc
 nnoremap <F1> :call ToggleFocusMode()<cr>
 "}}}
 
+" let g:deoplete#enable_at_startup = 1
+
 " vim:foldmethod=marker:foldlevel=0
+
