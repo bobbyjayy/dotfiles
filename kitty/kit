@@ -1,4 +1,4 @@
-vim:fileencoding=utf-8:ft=conf
+# vim:fileencoding=utf-8:ft=conf
 
 # Font family. You can also specify different fonts for the
 # bold/italic/bold-italic variants. By default they are derived automatically,
@@ -8,7 +8,7 @@ vim:fileencoding=utf-8:ft=conf
 # bold_font Operator Mono Thick
 # bold_italic_font Operator Mono Medium
 # font_family      Input Mono
-font_family      Source Code Pro regular
+font_family      Fantasque Sans Mono
 italic_font      auto
 bold_font        auto
 bold_italic_font auto
@@ -20,8 +20,7 @@ font_size        14.0
 foreground       #c0b18b
 
 # The background color
-# background       #202020
-background       #3b3b3b
+background       #202020
 
 # The foreground for selections
 selection_foreground #2f2f2f
@@ -241,5 +240,3 @@ macos_option_as_alt no
 macos_titlebar_color background
 
 allow_remote_control yes
-
-include vilebloom.conf

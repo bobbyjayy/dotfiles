@@ -14,7 +14,7 @@
 #echo_color "\033[0;90m" "c-k  Delete forward to end of line"
 #echo_color "\033[0;90m" "c-u  Delete entire line"
 
-# Import colorscheme from wal
+#Import colorscheme from wal
 #(wal -r &)
 
 # Path to your oh-my-zsh installation.
@@ -102,9 +102,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+
+alias ytd="youtube-dl --extract-audio --audio-format mp3 --prefer-ffmpeg"
+alias vimconfig="vim ~/.vimrc"
+
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"
 
 bindkey -v
+
+export PATH="$HOME/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
