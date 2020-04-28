@@ -10,77 +10,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
-Plug 'dylanaraps/wal'
 Plug 'mhinz/vim-startify'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-surround'
-Plug 'ternjs/tern_for_vim'
-Plug 'othree/yajs.vim'
-Plug 'w0rp/ale'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'mxw/vim-jsx'
 Plug 'jiangmiao/auto-pairs'
-Plug 'prettier/vim-prettier', {
-      \'do': 'yarn install',
-      \'for':['javascript', 'typescript','css','less','scss','json','markdown','vue','yaml','html']}
-
-Plug 'junegunn/seoul256.vim'
-Plug 'calviken/vim-gdscript3'
-Plug 'lervag/vimtex'
+Plug 'crusoexia/vim-monokai'
+Plug 'majutsushi/tagbar'
+Plug 'junegunn/goyo.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
 
-" }}}
-
-"""""""""""""""""""""""""""'
-""""""""VUNDLE PLUGINS"""""""""""""
-""""""""""""""""""""""""""""
-" {{{
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
-
-"" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-"" alternatively, pass a path where Vundle should install plugins
-""call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'scrooloose/nerdcommenter'
-""Plugin 'vim-syntastic/syntastic'
-"Plugin 'airblade/vim-gitgutter'
-"Plugin 'sheerun/vim-polyglot'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'dylanaraps/wal'
-"Plugin 'mhinz/vim-startify'
-"Plugin 'ap/vim-css-color'
-"Plugin 'tpope/vim-surround'
-"Plugin 'ternjs/tern_for_vim'
-""Plugin 'Valloric/YouCompleteMe'
-"Plugin 'othree/yajs.vim'
-"Plugin 'w0rp/ale'
-"Plugin 'mxw/vim-jsx'
-"Plugin 'prettier/vim-prettier'
-
-" All of your Plugins must be added before the following line
-"call vundle#end()            " required
-"filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 " }}}
 
 """"""""""""""""""""""""""
@@ -96,7 +40,7 @@ set textwidth=80
 "set textwidth=60
 set encoding=utf-8
 set fenc=
-set fencs=iso-2022-jp,euc-jp,cp932
+"set fencs=iso-2022-jp,euc-jp,cp932
 set relativenumber
 set hidden
 set showcmd
@@ -135,9 +79,11 @@ set showmatch  " highlight matching [{()}]
 set foldenable " enable folding
 set foldlevelstart=10 " open most folds by default
 set foldnestmax=10 "10 nested fold max
-set foldmethod=manual "fold based on indent level
+"set foldmethod=manual "fold based on indent level
+set foldmethod=syntax "fold based on indent level
 set modelines=1
 set pastetoggle=<F3>
+set complete-=i
 
 hi vertsplit ctermfg=238 ctermbg=235
 hi LineNr ctermfg=237
@@ -157,9 +103,157 @@ set statusline=%=%f\ %m\ %P\
 set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 set laststatus=2
 set noshowmode
-colorscheme seoul256 
+set background=dark
+colorscheme monokai 
 
 " }}}
+
+"""""""""""""""""""""""""""""
+"""""Coc specific settings"""
+"""""""""""""""""""""""""""""
+" {{{
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" coc-tsserver, coc-python are the examples of servers that support it.
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" }}}
+
 
 """""""""""""""""""""""""""""
 """""KEY BINDINGS""""""""""""
@@ -184,7 +278,7 @@ inoremap <esc> <nop>
 
 "mapping to open browser
 nnoremap <silent> <F10> :!open %<cr>
-nnoremap <silent> <F9> :!open % -a qutebrowser<cr>
+nnoremap <silent> <F9> :!open % -a firefox<cr>
 
 " Regex mapping for substituting
 noremap <leader>; :%s:::g<Left><Left><Left>
@@ -201,26 +295,11 @@ nmap <silent> <leader>dj <Plug>(coc-implementation)
 " map Ctrl X Ctrl o
 " imap <tab><tab> <c-x><c-o>
 
-" }}}
-
-"""""""""""""""""""""""""""""
-""""ALE SETTING""""""""
-"""""""""""""""""""""""""""""
-" {{{
-"let g:ale_linters_explicit = 1
-let g:ale_completion_enabled = 1
-let g:ale_linters = {
-\   'c': ['gcc'],
-\   'python': ['flake8', 'pylint'],
-\   'javascript': ['eslint']
-\}
-
-"let g:ale_fixers = {
-"\   'javascript': ['eslint']
-"\}
-"let g:ale_fix_on_save = 1
+" TagBar keybindings
+noremap <leader>t :TagbarOpenAutoClose<CR>
 
 " }}}
+
 
 "{{{ Fuzzy search
 "Search down into all folders
@@ -237,9 +316,7 @@ let g:netrw_banner=0  "disable annoying banner
 
 " Read an empty HTML template and move cursor to title
 nnoremap \html :-1read $HOME/.vim/.skeleton.html<CR>4jwf>a
-nnoremap \java :-1read $HOME/.vim/.skeleton.java<CR>2ea
 nnoremap \boot :-1read $HOME/.vim/.skeleton.bootstrap<CR>10j2e2li
-nnoremap \lorem :-1read $HOME/.vim/.skeleton.lorem<CR>
 "}}}
 
 "{{{ NERDTree
@@ -251,112 +328,10 @@ let NERDTreeSortOrder = ['\/$', '\.js*', '\.cpp$', '\.h$', '*']
 hi LineNr ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
 
-""""""""""""""""""""""""
-""" CUSTOM FUNCTIONS""""
-""""""""""""""""""""""""
-" {{{
-nnoremap <F2> :call NumberToggle()<cr>
+"""""""""""""""""""""""""""""
+"""" GOYO SETTINGS """"""""""
+"""""""""""""""""""""""""""""
+nnoremap <leader>g :Goyo<CR>
 
-""" FocusMode
-function! ToggleFocusMode()
-  if (&foldcolumn != 12)
-    set laststatus=0
-    set numberwidth=10
-    set foldcolumn=12
-    hi Normal guibg=NONE ctermbg=NONE
-    set nonumber
-    set norelativenumber
-    set noruler
-    hi FoldColumn ctermbg=none
-    hi LineNr ctermfg=0 ctermbg=none
-    hi NonText ctermfg=0
-  else
-	  set laststatus=2
-	  set numberwidth=4
-	  set relativenumber
-	  set number
-    set foldcolumn=0
-    set ruler
-    execute 'colorscheme ' . g:colors_name
-    hi LineNr ctermbg=NONE
-    hi Normal guibg=NONE ctermbg=NONE
-  endif
-endfunc
-nnoremap <F1> :call ToggleFocusMode()<cr>
-"}}}
-
-
-" -----------------------------------------------------------------------------
-"  VIMTEX OPTIONS
-"  ----------------------------------------------------------------------------
-" {{{
-if has('unix')
-    if has('mac')
-        let g:vimtex_view_method = "skim"
-        let g:vimtex_view_general_viewer
-                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-        let g:vimtex_view_general_options = '-r @line @pdf @tex'
-
-        " This adds a callback hook that updates Skim after compilation
-        let g:vimtex_compiler_callback_hooks = ['UpdateSkim']
-        function! UpdateSkim(status)
-            if !a:status | return | endif
-
-            let l:out = b:vimtex.out()
-            let l:tex = expand('%:p')
-            let l:cmd = [g:vimtex_view_general_viewer, '-r']
-            if !empty(system('pgrep Skim'))
-            call extend(l:cmd, ['-g'])
-            endif
-            if has('nvim')
-            call jobstart(l:cmd + [line('.'), l:out, l:tex])
-            elseif has('job')
-            call job_start(l:cmd + [line('.'), l:out, l:tex])
-            else
-            call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
-            endif
-        endfunction
-    else
-        let g:latex_view_general_viewer = "zathura"
-        let g:vimtex_view_method = "zathura"
-    endif
-elseif has('win32')
-
-endif
-
-let g:tex_flavor = "latex"
-let g:vimtex_quickfix_open_on_warning = 0
-let g:vimtex_quickfix_mode = 2
-if has('nvim')
-    let g:vimtex_compiler_progname = 'nvr'
-endif
-
-" One of the neosnippet plugins will conceal symbols in LaTeX which is
-" confusing
-let g:tex_conceal = ""
-
-" Can hide specifc warning messages from the quickfix window
-" Quickfix with Neovim is broken or something
-" https://github.com/lervag/vimtex/issues/773
-let g:vimtex_quickfix_latexlog = {
-            \ 'default' : 1,
-            \ 'fix_paths' : 0,
-            \ 'general' : 1,
-            \ 'references' : 1,
-            \ 'overfull' : 1,
-            \ 'underfull' : 1,
-            \ 'font' : 1,
-            \ 'packages' : {
-            \   'default' : 1,
-            \   'natbib' : 1,
-            \   'biblatex' : 1,
-            \   'babel' : 1,
-            \   'hyperref' : 1,
-            \   'scrreprt' : 1,
-            \   'fixltx2e' : 1,
-            \   'titlesec' : 1,
-            \ },
-            \}
-"}}}
 
 " vim:foldmethod=marker:foldlevel=0
